@@ -46,7 +46,7 @@ function appendDigit(digit){
 
 document.querySelectorAll(".digit").forEach(btn =>{
     btn.addEventListener("click", () => appendDigit(btn.textContent));
-})
+});
 
 function setOperator(op){
     if(currentOperator !== null && !shouldResetDisplay){
@@ -64,4 +64,28 @@ function setOperator(op){
 
 document.querySelectorAll(".operator").forEach(btn =>{
     btn.addEventListener("click", () => setOperator(btn.textContent));
-})
+});
+
+document.getElementById("equals").addEventListener("click", () => {
+    if(currentOperator === null) return;
+
+    secondNumber = display.textContent;
+    const result = operate(currentOperator, firstNumber, secondNumber);
+    display.textContent = round(result);
+
+    firstNumber = result;
+    currentOperator = null;
+    shouldResetDisplay = true;
+});
+
+document.getElementById("clear").addEventListener("click", () => {
+    firstNumber ="";
+    secondNumber ="";
+    currentOperator = null;
+    display.textContent = "0";
+});
+
+function round(num){
+    if(typeof num == "string") return num;
+    return Math.round(num * 1000) / 1000;
+}
