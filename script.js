@@ -47,3 +47,21 @@ function appendDigit(digit){
 document.querySelectorAll(".digit").forEach(btn =>{
     btn.addEventListener("click", () => appendDigit(btn.textContent));
 })
+
+function setOperator(op){
+    if(currentOperator !== null && !shouldResetDisplay){
+        secondNumber = display.textContent;
+        const result = operate(currentOperator, firstNumber, secondNumber);
+        display.textContent = round(result);
+        firstNumber = result;
+    } else {
+        firstNumber = display.textContent;
+    }
+
+    currentOperator = op;
+    shouldResetDisplay = true;
+}
+
+document.querySelectorAll(".operator").forEach(btn =>{
+    btn.addEventListener("click", () => setOperator(btn.textContent));
+})
