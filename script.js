@@ -27,3 +27,23 @@ function operate(operator, a, b){
         default: return null;
     }
 }
+
+let firstNumber = "";
+let secondNumber = "";
+let currentOperator = null;
+let shouldResetDisplay = false;
+
+const display = document.getElementById("display");
+
+function appendDigit(digit){
+    if(display.textContent === "0" || shouldResetDisplay){
+        display.textContent = digit;
+        shouldResetDisplay = false;
+    } else{
+        display.textContent += digit;
+    }
+}
+
+document.querySelectorAll(".digit").forEach(btn =>{
+    btn.addEventListener("click", () => appendDigit(btn.textContent));
+})
