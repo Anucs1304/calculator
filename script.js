@@ -49,11 +49,12 @@ document.querySelectorAll(".digit").forEach(btn =>{
 });
 
 function setOperator(op){
-    if(currentOperator !== null && !shouldResetDisplay){
+
+    if(currentOperator !== null){
         secondNumber = display.textContent;
         const result = operate(currentOperator, firstNumber, secondNumber);
         display.textContent = round(result);
-        firstNumber = result;
+        firstNumber = String(result);
     } else {
         firstNumber = display.textContent;
     }
@@ -73,7 +74,7 @@ document.getElementById("equals").addEventListener("click", () => {
     const result = operate(currentOperator, firstNumber, secondNumber);
     display.textContent = round(result);
 
-    firstNumber = result;
+    firstNumber = String(result);
     currentOperator = null;
     shouldResetDisplay = true;
 });
